@@ -37,8 +37,8 @@ class ProductList {
 		
 	}
 	getJson(url) {
-        return fetch(`${API + url}`) //сходи на сервер по ссылке и верни результат
-            .then(result => result.json())  //.then function(result){return result.json} если все ок то возвращаем данные в формате джейсон и result.json всторенный метод который сам где то там переводит джейсон в объект
+        return fetch(`${API + url}`) //возврат результат
+            .then(result => result.json())  //.then function(result){return result.json} если все ок то возвращаем данные в формате джейсон и result.json
             .catch(error => {
                 console.log(error);
             })
@@ -94,7 +94,7 @@ class Cart {
 	}
 	getJson(url) {
         return fetch(`${API + url}`) //сходи на сервер по ссылке и верни результат
-            .then(result => result.json())  //.then function(result){return result.json} если все ок то возвращаем данные в формате джейсон и result.json всторенный метод который сам где то там переводит джейсон в объект
+            .then(result => result.json())  //.then function(result){return result.json} если все ок то возвращаем данные в формате джейсон и result.json
             .catch(error => {
                 console.log(error);
             })
@@ -106,7 +106,7 @@ class Cart {
                 if (data.result === 1) {
 					let productId = +element.dataset['id']; // Создаем переменную и присваеваем id товара с которого была нажата кнопка (+element переводит из строки в число)
 					//кусок кода обнавления количества
-					let isFound = false;  // флаг который будет mенять значение если найдем товар
+					let isFound = false;  // флаг который будет менять значение если найдем товар
 					for(let i = 0; i < this.goods.length;i++){ // цикл
 						if (this.goods[i].id_product === productId){
 							this.goods[i].quantity++;
@@ -139,6 +139,12 @@ class Cart {
         for (let cartElem of this.goods) { // перебераем элементы товара в массиве
             allItemsHTML += cartElem.render();// накапливаем html кусок для всех товаров в корзине
 		block.innerHTML = allItemsHTML; // подставляет хтмл кусок в блок корзины
+        }
+	if (block.innerHTML === "") {
+           block.innerHTML = `<p class="product-single-price">Корзина пуста</p>`
+        }
+		if (block.innerHTML === "") {
+           block.innerHTML = `<p class="product-single-price">Корзина пуста</p>`
         }
     }
 	//Метод для того что бы при клике на карзину отображалось что там есть 
@@ -180,7 +186,7 @@ class Cart {
 //Класс элемента карзины
 class CartItem extends ProductItem { // наследуемся от родителя
 	constructor(el, img = 'https://aliradar.com/api/image?url=https%3A%2F%2Fae01.alicdn.com%2Fkf%2FHTB15S6pQXXXXXbNXpXXq6xXFXXXZ%2F200-x-150.jpg_480x480.jpg_Q80.jpg') { // приходит объект из которого будем заполнять свои свойства
-		super (el, img) // функуия которая вызывает конструктор класса от которого я хочу унаследоваться
+		super (el, img) // функуия которая вызывает конструктор класса от которого хотим унаследоваться
 		this.quantity = el.quantity; // количество ед.товара
 	}
 	render() {
