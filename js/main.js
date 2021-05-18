@@ -207,11 +207,7 @@ class CartItem extends ProductItem { // наследуемся от родите
         </div>
         </div>`
 		
-    } else {
-
-        htmlStr = `<p class="product-single-price">Корзина пуста</p>`
-    
-    }
+   }
 	return htmlStr;
 	}
 }
