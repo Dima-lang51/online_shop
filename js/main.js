@@ -143,9 +143,6 @@ class Cart {
 	if (block.innerHTML === "") {
            block.innerHTML = `<p class="product-single-price">Корзина пуста</p>`
         }
-		if (block.innerHTML === "") {
-           block.innerHTML = `<p class="product-single-price">Корзина пуста</p>`
-        }
     }
 	//Метод для того что бы при клике на карзину отображалось что там есть 
 	_init() {
